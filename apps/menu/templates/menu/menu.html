@@ -1,0 +1,33 @@
+{% extends "menu/base.html" %}
+
+{% block title %}Mеню {{ menu_name }}{% endblock %}
+
+{% block head %}
+    <script type="application/javascript">
+        const menu_structure = {{ hierarchy|safe }};
+        const menu_name = "{{ menu_name }}";
+        {% if active_item_name is None %}
+            const active_item_name = undefined;
+        {% else %}
+            const active_item_name = "{{ active_item_name }}";
+        {% endif %}
+
+    </script>
+    {% load static %}
+    <link href="{% static "menu/menu.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <span>{{ menu_name }}</span>
+    <br>
+    <div id="menu" class="row">
+    </div>
+    <template id="menu-item">
+        <div>
+            <span id="item-name"></span>
+            <br>
+            <div id="children" class="row"></div>
+        </div>
+    </template>
+    <script src="{% static 'menu/menu.js' %}"></script>
+{% endblock %}

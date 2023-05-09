@@ -1,0 +1,10 @@
+{% extends "menu/base.html" %}
+
+{% block title %}Список меню{% endblock %}
+
+{% block body %}
+    {% for name in menu_names %}
+        <a href="{% url 'menu_view' menu_name=name %}"> {{ name }}</a>
+        <br>
+    {% endfor %}
+{% endblock %}

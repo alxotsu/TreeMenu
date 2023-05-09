@@ -1,6 +1,5 @@
 from json import loads
 
-from django.http.response import HttpResponse
 from django.shortcuts import render
 
 from .models import MenuItem
@@ -12,7 +11,7 @@ def menu_list_view(request):
     for menu_item in MenuItem.objects.values("menu_name").distinct():
         names.append(menu_item['menu_name'])
 
-    return HttpResponse(names, status=200, content_type="Application/json")
+    return render(request, "menu/menu_list.html", context={"menu_names": names})
 
 
 def menu_view(request, menu_name, active_item_name=None):
@@ -24,4 +23,9 @@ def menu_view(request, menu_name, active_item_name=None):
     menu_items = MenuItem.objects.select_related('parent').filter(menu_name=menu_name)
     hierarchy = get_menu_hierarchy(menu_items, active_item_name)
 
-    return HttpResponse(hierarchy, status=200, content_type="Application/json")
+    s_hierarchy = str(hierarchy).replace("'", '"')
+    return render(request, "menu/menu.html", context={
+        "hierarchy": s_hierarchy,
+        "menu_name": menu_name,
+        "active_item_name": active_item_name,
+    })

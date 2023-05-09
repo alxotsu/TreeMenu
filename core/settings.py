@@ -27,7 +27,6 @@ SECRET_KEY = get_env("SECRET_KEY", raise_key_error=True)
 DEBUG = get_env("DEBUG", default=False)
 ALLOWED_HOSTS = ['*']
 ROOT_URLCONF = 'core.urls'
-STATIC_URL = "static/"
 # general
 ###
 
@@ -54,6 +53,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+]
+# apps & middlewares
+###
+
+###
+# templates & statics
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -70,12 +81,13 @@ TEMPLATES = [
     },
 ]
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
+STATIC_URL = "static/"
+
+STATICFILES_DIRS = [
+    "apps/menu/staticfiles",
 ]
-# apps & middlewares
+
+# templates & statics
 ###
 
 ###
