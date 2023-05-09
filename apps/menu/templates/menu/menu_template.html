@@ -1,0 +1,23 @@
+<script type="application/javascript">
+    const menu_structure = {{ hierarchy|safe }};
+    const menu_name = "{{ menu_name }}";
+    {% if active_item_name is None %}
+        const active_item_name = undefined;
+    {% else %}
+        const active_item_name = "{{ active_item_name }}";
+    {% endif %}
+</script>
+
+<a href="{{ menu_url }}">{{ menu_name }}</a>
+<br>
+<div id="menu" class="row"></div>
+<template id="menu-item">
+    <div>
+        <span id="item-name"></span>
+        <br>
+        <div id="children" class="row"></div>
+    </div>
+</template>
+
+{% load static %}
+<script src="{% static 'menu/menu.js' %}" type="application/javascript"></script>

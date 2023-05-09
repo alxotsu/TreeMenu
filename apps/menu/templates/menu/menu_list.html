@@ -3,8 +3,8 @@
 {% block title %}Список меню{% endblock %}
 
 {% block body %}
-    {% for name in menu_names %}
-        <a href="{% url 'menu_view' menu_name=name %}"> {{ name }}</a>
+    {% for menu in menu_list %}
+        <a href="{{ menu.get_url }}"> {{ menu.name }}</a>
         <br>
     {% endfor %}
 {% endblock %}

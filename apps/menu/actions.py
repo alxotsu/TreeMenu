@@ -1,5 +1,5 @@
 from django.db.models.query import QuerySet
-from .models import MenuItem
+from .models import MenuItem, Menu
 
 
 def get_menu_hierarchy(menu_items: QuerySet[MenuItem], active_item_name: str or None = None) -> list[dict]:
@@ -49,9 +49,12 @@ def get_menu_hierarchy(menu_items: QuerySet[MenuItem], active_item_name: str or 
     return root_items
 
 
-def add_menu(menu_name: str, hierarchy: list[dict]) -> list[MenuItem]:
+def add_menu(menu_name: str, hierarchy: list[dict]) -> Menu:
+    menu = Menu(name=menu_name)
+    menu.save()
+
     def add_item(item: dict, parent_object: MenuItem or None = None) -> MenuItem:
-        menu_item = MenuItem(name=item['name'], menu_name=menu_name, parent=parent_object)
+        menu_item = MenuItem(name=item['name'], menu=menu, parent=parent_object)
         menu_item.save()
         for child in item['children']:
             add_item(child, menu_item)
@@ -60,4 +63,4 @@ def add_menu(menu_name: str, hierarchy: list[dict]) -> list[MenuItem]:
     roots = list()
     for root_item in hierarchy:
         roots.append(add_item(root_item))
-    return roots
+    return menu
