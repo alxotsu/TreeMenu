@@ -21,8 +21,7 @@ def menu_view(request, menu_name, active_item_name=None):
         hierarchy = loads(request.body)
         add_menu(menu_name, hierarchy)
 
-    menu_items = MenuItem.objects.select_related('parent').filter(menu_name=menu_name).order_by('parent_id')
+    menu_items = MenuItem.objects.select_related('parent').filter(menu_name=menu_name)
     hierarchy = get_menu_hierarchy(menu_items, active_item_name)
 
     return HttpResponse(hierarchy, status=200, content_type="Application/json")
-
