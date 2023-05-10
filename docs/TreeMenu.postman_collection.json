@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "b0349312-1cdc-4e50-8906-143f21283c7d",
+		"name": "TreeMenu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19745171",
+		"_collection_link": "https://www.postman.com/martian-shadow-36147/workspace/public/collection/19745171-b0349312-1cdc-4e50-8906-143f21283c7d?action=share&creator=19745171&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "create new menu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"1\",\r\n        \"children\":[\r\n            {\r\n                \"name\": \"1.1\",\r\n                \"children\": [\r\n                    {\r\n                        \"name\": \"1.1.1\",\r\n                        \"children\": []\r\n                    },\r\n                    {\r\n                        \"name\": \"1.1.2\",\r\n                        \"children\": []\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"name\": \"1.2\",\r\n                \"children\": [\r\n                    {\r\n                        \"name\": \"1.2.1\",\r\n                        \"children\": []\r\n                    },\r\n                    {\r\n                        \"name\": \"1.2.2\",\r\n                        \"children\": []\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"2\",\r\n        \"children\":[\r\n            {\r\n                \"name\": \"2.1\",\r\n                \"children\": [\r\n                    {\r\n                        \"name\": \"2.1.1\",\r\n                        \"children\": []\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"name\": \"3\",\r\n        \"children\":[\r\n            {\r\n                \"name\": \"3.1\",\r\n                \"children\": [\r\n                    {\r\n                        \"name\": \"3.1.1\",\r\n                        \"children\": []\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/menu/numeral/2.1/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"menu",
+						"numeral",
+						"2.1",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
