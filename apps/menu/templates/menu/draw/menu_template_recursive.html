@@ -1,0 +1,10 @@
+<div {% if item.name == active_item_name %} class="active" {% endif %}>
+    <a href="{% url 'menu_view_with_item' menu_name=menu_name active_item_name=item.name %}"> {{ item.name }} </a>
+    <br>
+    <div class="row">
+        {% load draw_menu %}
+        {% for child in item.children %}
+            {% _draw_menu_recursive child active_item_name menu_name %}
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<a href="{{ menu_url }}">{{ menu_name }}</a>
+<br>
+<div class="row">
+    {% load draw_menu %}
+    {% for item in hierarchy %}
+        {% _draw_menu_recursive item active_item_name menu_name %}
+    {%  endfor %}
+</div>
